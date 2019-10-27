@@ -11,9 +11,9 @@
 
 #define F_CPU 8000000L
 
-#define FREQ_MIN 0.01
-#define FREQ_MAX 100
-#define HALF_PERIOD_MAX 50000
+#define FREQ_MIN 0.1
+#define FREQ_MAX 10
+#define HALF_PERIOD_MAX 5000
 
 float vds_freq[6]  = {1, 1, 1, 1, 1, 1}; 
 int half_periods_vd[6] = {0, 0, 0, 0, 0, 0};
@@ -47,7 +47,7 @@ void start_setup(void){
 		if(bit_is_clear(PINC, PC1)){
 			_delay_ms(50);
 			if(bit_is_clear(PINC, PC1)){
-				vds_freq[current_vd - 1] = vds_freq[current_vd - 1] * 10;
+				vds_freq[current_vd - 1] = vds_freq[current_vd - 1] * 2;
 				if(vds_freq[current_vd - 1] > FREQ_MAX) vds_freq[current_vd - 1] = FREQ_MIN;
 				calc_half_periods();
 				time_out = 0;
